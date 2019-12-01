@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
 
 """Number Guessing Game a.k.a. Bulls and Cows
     Players will receive a Welcome Message, and then 
@@ -26,13 +24,14 @@
 import random
 
 play_a_round = True
-
+#At game end, always start a new round.
 while play_a_round == True:
     
+    #Welcome the Player
     print(
         "Welcome to the number guessing game (also known as Bulls & Cows).\n I hope you have fun!! =))\n \n")
     
-    
+    #If the number of digits is not a number, tell the player to try again. 
     try:
         game_num_digits = int(input("Please input a number a digits for your game:"))
     except ValueError:
@@ -41,19 +40,21 @@ while play_a_round == True:
 
     #This will be the list of digits to be guessed
     answer_list = [random.randint(0, 9) for i in range(game_num_digits)] 
-
+    
+    #Enter the same loop for each player guess, until they win and the loop breaks.
     while True:
 
         #Take Player guess.
         new_guess = input("please input your guess:")
 
-        #If it's not an integer, give player instruction to change guess
+        #If it's not an integer, give player instruction to change guess, and 
         try: 
             new_guess_int = int(new_guess)
         except ValueError: 
             print("\n \n Oh noo! Please put your guess digits together into a single number.\n \n")
             continue
-            
+        
+        #If it's the wrong number of digits, inform the player and have them try again.
         if len(new_guess) != game_num_digits:
             print("\n \n Uh oh! That's not the right number of digits! \n \n")
             continue
@@ -66,6 +67,7 @@ while play_a_round == True:
         exact_matches_boolean = [new_guess_list[i] == answer_list[i] for i in range(game_num_digits)]
         num_exact_match = sum(exact_matches_boolean)
         
+        #If the guess is correct, End Game and state You Win!!
         if num_exact_match == game_num_digits:
             print("You win!!\n \n")
             break
@@ -85,29 +87,17 @@ while play_a_round == True:
                 matches_out_of_place.append(digit)
                 answer_list_removed_exact.remove(digit)
         
+        #Get the number of out-of-place matches
         num_matches_out_of_place = len(matches_out_of_place)
         
+        #Tell the player how many guesses are exact and out of place.
         print("Great! You have {} exact matches and {} other digits that are correct but out of place!\n \n".format(num_exact_match,num_matches_out_of_place))
             
         
     
-    #TODO: Ask the player whether they want to play again.
-    #If Yes, then go back to the beginning.
-    #If No, then say goodbye!
+        #TODO: Ask the player whether they want to play again.
+        #If Yes, then go back to the beginning.
+        #If No, then say goodbye!
+        #For now, auto restarts a new game
     
-    #For now, auto restarts a new game
     
-    
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
