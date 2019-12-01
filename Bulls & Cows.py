@@ -33,13 +33,13 @@ while play_a_round == True:
     
     #If the number of digits is not a number, tell the player to try again. 
     try:
-        game_num_digits = int(input("Please input a number a digits for your game:"))
+        game_num_digits = int(input("Please input a number of digits for your game:"))
     except ValueError:
         print("\n \n Whoops! Please put in an integer number of digits\n \n")
         continue
 
-    #This will be the list of digits to be guessed
-    answer_list = [random.randint(0, 9) for i in range(game_num_digits)] 
+    #This will be the list of digits to be guessed. Ensure that the first digit is nonzero to avoid confusion.
+    answer_list = [random.randint(1, 9)] + [random.randint(0, 9) for i in range(game_num_digits-1)] 
     
     #Enter the same loop for each player guess, until they win and the loop breaks.
     while True:
